@@ -9,8 +9,7 @@ public class PerfectNumber {
 	
 	public static Set<Integer> divisors(int n){
 		Set<Integer> set = new HashSet<Integer>();
-		set.add(1);
-		for(int i=2; i<n; i++) {
+		for(int i=1; i<=n; i++) {
 			if(n%i == 0) {
 				set.add(i);
 			}
@@ -27,13 +26,9 @@ public class PerfectNumber {
 		while (iterator.hasNext()) {
 		   Sum+= (int)iterator.next();
 		}
+		Sum-=n;
 		if (Sum < n ) return STATE.DEFICIENT;
 		if (Sum == n ) return STATE.PERFECT;
-		return STATE.ABUNDANT;				
+		return STATE.ABUNDANT;			
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(PerfectNumber.process(6));
-	}
-
 }
