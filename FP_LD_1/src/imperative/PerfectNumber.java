@@ -1,0 +1,39 @@
+package imperative;
+import java.util.*;
+
+public class PerfectNumber {
+	
+	public enum STATE{
+		DEFICIENT, PERFECT, ABUNDANT
+	}
+	
+	public static Set<Integer> divisors(int n){
+		Set<Integer> set = new HashSet<Integer>();
+		set.add(1);
+		for(int i=2; i<n; i++) {
+			if(n%i == 0) {
+				set.add(i);
+			}
+		}
+		return set;
+	}
+
+	public static STATE process(int n) {
+		if(n == 1) return STATE.DEFICIENT;
+		Set<Integer> set = new HashSet<Integer>();
+		set = divisors(n);
+		int Sum = 0;
+		Iterator<Integer> iterator = set.iterator();
+		while (iterator.hasNext()) {
+		   Sum+= (int)iterator.next();
+		}
+		if (Sum < n ) return STATE.DEFICIENT;
+		if (Sum == n ) return STATE.PERFECT;
+		return STATE.ABUNDANT;				
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(PerfectNumber.process(6));
+	}
+
+}
