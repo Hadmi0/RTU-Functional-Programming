@@ -18,7 +18,6 @@ public class PerfectNumber {
 	}
 
 	public static STATE process(int n) {
-		if(n == 1) return STATE.DEFICIENT;
 		Set<Integer> set = new HashSet<Integer>();
 		set = divisors(n);
 		int Sum = 0;
