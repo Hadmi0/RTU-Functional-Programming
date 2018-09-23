@@ -1,6 +1,7 @@
 package functional;
 import java.util.*;
 import java.util.stream.*;
+import java.util.function.*;
 
 public class PerfectNumber {
 	
@@ -10,7 +11,8 @@ public class PerfectNumber {
 	
 	public static Set<Integer> divisors(int n){	
 		Set<Integer> set = IntStream
-				.rangeClosed(1, n)
+				.rangeClosed(1, (int)Math.sqrt(n))
+				.flatMap(i -> IntStream.of(i, n/i))
 				.filter(i -> n%i == 0)
 				.boxed()
 				.collect(Collectors.toSet());
@@ -18,18 +20,19 @@ public class PerfectNumber {
 	}
 
 	public static STATE process(int n) {
-		Set<Integer> set = new HashSet<Integer>();
-		set = divisors(n);
-		int Sum = 0;
-		Iterator<Integer> iterator = set.iterator();
-		while (iterator.hasNext()) {
-		   Sum+= (int)iterator.next();
-		}
-		Sum-=n;
-		if (Sum < n ) return STATE.DEFICIENT;
-		if (Sum == n ) return STATE.PERFECT;
-		return STATE.ABUNDANT;			
+		Function<Integer, STATE> PerfectOrAbundant =  divSum -> Optional.of(divSum)
+				.filter(sum -> sum == n)
+				.map(sum -> STATE.PERFECT)
+				.orElse(STATE.ABUNDANT);
+		return divisors(n)
+				.stream()
+				.filter(i -> i != n)
+				.reduce((sum, i) -> sum + i)
+				.filter(sum -> sum >= n)
+				.map(PerfectOrAbundant)
+				.orElse(STATE.DEFICIENT);			
 	}
+
 	public static void main(String[] args) {
 	}
 }
