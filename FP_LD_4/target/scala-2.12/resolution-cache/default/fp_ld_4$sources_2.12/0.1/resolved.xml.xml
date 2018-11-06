@@ -4,7 +4,7 @@
 		module="fp_ld_4$sources_2.12"
 		revision="0.1"
 		status="integration"
-		publication="20181023235330"
+		publication="20181106170318"
 	/>
 	<configurations>
 		<conf name="default" visibility="public" description=""/>

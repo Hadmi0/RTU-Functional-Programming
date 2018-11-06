@@ -4,7 +4,7 @@
 		module="fp_ld_4$sbt_2.12"
 		revision="0.1"
 		status="integration"
-		publication="20181023235327"
+		publication="20181106170312"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

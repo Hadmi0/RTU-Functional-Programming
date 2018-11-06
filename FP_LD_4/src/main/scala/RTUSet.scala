@@ -34,7 +34,7 @@ object RTUSet {
     */
   def filter(s: Set, p: Int => Boolean): Set = (x: Int) => contains(s, x) && contains(p, x)
 
-  /** =========== For brave enough =========== */
+  /** =========== For brave enough ===========**/
 
 
   val bound = 1000
